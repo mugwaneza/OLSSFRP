@@ -1,0 +1,90 @@
+@(message: String)
+@main_dashboard("OLSSFRP" ) {
+
+    @views.html.navigation("message")
+
+    <div class="content-wrapper py-3">
+        <div class="container-fluid">
+            <div class="row trak_map_page">
+                <div class="page-header" style="background-image: url('@routes.Assets.at("images/vehicle3.jpg")')">
+
+                    <div class="container">
+                        <div class="col-md-9"><br>
+
+
+                            @if(message == "error") {
+                                <div class="alert alert-danger col-md-6 offset-1" role="alert">
+                                @flash.get("error")
+                                </div>
+
+                            }
+                            @if(message=="success"){
+
+                                <div class="alert alert-success col-md-6 offset-1" role="alert">
+                                @flash.get("success")
+                                </div>
+                            }
+
+                            <h2 class="text-success" style="margin-left:5%;">Create system admin accounts</h2>
+
+
+                            <form class="col-sm-offset-2" action="/admin/user/create"  id="adminsignup" autocomplete="off" method="POST" >
+
+
+                                <div class="form-group row  ">
+                                    <div class="col-sm-10">
+                                        <input
+                                        name="fullname"
+                                        id="fullname"
+                                        class="form-control"
+                                        type="text"
+                                        placeholder="Enter Full name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row  ">
+                                    <div class="col-sm-10">
+                                        <input
+                                        name="email"
+                                        id="email"
+                                        class="form-control"
+                                        type="email"
+                                        placeholder="Enter email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row  ">
+                                    <div class="col-sm-10">
+                                        <input
+                                        name="password"
+                                        id="password"
+                                        class="form-control"
+                                        type="password"
+                                        placeholder="Enter password">
+                                    </div>
+                                </div>
+
+                                <div class=" form-group col-md-offset-4  ">
+                                    <input type="submit" class="btn btn-primary " value="Submit">
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- /.container-fluid -->
+    </div>
+        <!-- /.content-wrapper -->
+
+    <a class="scroll-to-top rounded" href="#">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+
+    <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_7OucfzhqVC8ic_RPW0jPy-55OE0y-ZA&sensor=false&libraries=places">
+    </script>
+
+}

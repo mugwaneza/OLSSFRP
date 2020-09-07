@@ -1,0 +1,41 @@
+@(message: String)
+@main("signing"){
+    @indexheader()
+
+    <section id="singupform">
+        <div class="container">
+            <div class="row">
+
+                <form class="form mt-3 col-md-6 offset-3" method="post" action="/admin/login" autocomplete="off" id="agentsigninform">
+
+                    <h2>Admin Signin Form</h2>
+
+                    @if(message == "error") {
+                        <div class="alert alert-danger col-md-8 offset-1" role="alert">
+                        @Html(flash.get("error"))
+                        </div>
+
+                    }
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="password" id="password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-warning form-control" value="Signin">
+                    </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+}

@@ -1,0 +1,71 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Home page
+GET    /                           controllers.Application.index()
+
+
+# Admin dashbord get method
+GET     /dashboard       controllers.AdminDashboard.DashboardIndex()
+GET     /dashboard/law       controllers.AdminDashboard.DashboardLawform()
+GET     /dashboard/register/law/cat       controllers.AdminDashboard.DashboardRegisterLawsCat()
+GET     /manage/accounts       controllers.AdminDashboard.DashboardAdminAccounts()
+GET     /dashboard/agent/inquiry       controllers.AdminDashboard.Inquiries()
+
+GET   /dashboard/law/details:id   controllers.AdminDashboard.LawDetails(id : Long)
+
+GET   /dashboard/agent/posts/details/:id   controllers.AdminDashboard.ChatDetails(id : String)
+
+
+#  Signin && signup routes
+GET     /signup/agent                controllers.Application.agentSignup()
+GET     /signin/agent                controllers.Application.agentSingin()
+
+# Admin login routes
+GET     /admin/login                controllers.AdminDashboard.adminLogin()
+POST     /admin/login                controllers.AdminDashboard.adminSignCreate()
+POST    /admin/user/create        controllers.AdminDashboard.adminLoginCreateAcount()
+
+
+# Admin dashbord post method
+POST    /dashboard/law        controllers.AdminDashboard.DashboardCreateLaw()
+POST    /dashboard/register/law/cat        controllers.AdminDashboard.DashboardRegisterLawLawCatCreate()
+POST /manage/decision/update                 controllers.ReportingControl.UpdateAgent()
+
+
+#   Signin && signup routes
+POST     /signup/agent/create                controllers.Application.agentSignupCreate()
+POST     /signin/agent/create                controllers.Application.agentSigninCreate()
+
+
+#  Citizen application get and post methods
+
+GET /agent/inquiry                controllers.Application.ShowChat()
+POST /agent/inquiry                controllers.Application.SendChat()
+POST /agent/inquiry/reply                controllers.AdminDashboard.ReplyChat()
+
+
+#Admin manage registered contents
+GET /manage/categories                 controllers.ReportingControl.ListCategories()
+GET /manage/search/:mobile        controllers.ReportingControl.ApplicationDecisonSearch(mobile :String)
+GET /manage/law                 controllers.ReportingControl.LisLaws()
+
+#// modification of admin accounts
+GET /admin/modify/account                controllers.ReportingControl.ShowAdmins()
+POST /admin/modify/account                controllers.ReportingControl.UpdateAdmins()
+POST /admin/modify/account                controllers.ReportingControl.UpdateAdmins()
+
+#get the lists using json and js
+GET /agent/sectors/:id                controllers.Application.GetSectors(id :Long)
+GET /agent/cells/:id                controllers.Application.GetCells(id :Long)
+
+
+#Logout route
+GET /agent/logout                     controllers.Application.logout()
+
+
+

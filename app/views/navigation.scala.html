@@ -1,0 +1,95 @@
+@(message: String)
+<!-- Left navigation Menus-->
+<nav id="mainNav" class="navbar static-top navbar-toggleable-md navbar-inverse bg-inverse ">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand " href="#">Welcome To</a>
+    <div class="collapse navbar-collapse" id="navbarExample">
+        <ul class="sidebar-nav navbar-nav">
+            @if(session.get("agentlog")){
+
+            }else {
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dashboard"><i class=""></i>Admin Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" aria-expanded="false"><i class="fa fa-fw fa-lock"></i><i  class="fa  fa-fw fa-caret-right"></i>
+                        Manage</a>
+                    <ul class="sidebar-second-level collapse" id="collapseMulti">
+                        <li>
+                            <a href="/manage/categories"><i  class="fa  fa-fw fa-caret-down"></i> Manage law categories</a>
+                        </li>
+                        <li>
+                            <a href="/manage/law"><i  class="fa  fa-fw fa-caret-down"></i> Manage laws </a>
+                        </li>
+                        <li>
+                            <a href="/admin/modify/account"><i  class="fa  fa-fw fa-caret-down"></i> Manage Admin accounts</a>
+                        </li>
+
+                        <li>
+                            <a href="/manage/accounts "><i  class="fa  fa-fw fa-caret-down"></i> View law comments</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+                    href="#collapseComponents"><i class="fa fa-fw fa-cogs"></i><i  class="fa  fa-fw fa-caret-right"></i> System settings</a>
+                    <ul class="sidebar-second-level collapse" id="collapseComponents">
+
+                        <li>
+                            <a href="/manage/accounts "><i  class="fa  fa-fw fa-caret-down"></i> Register Admin accounts</a>
+                        </li>
+
+                        <li>
+                            <a href="/dashboard/register/law/cat"><i  class="fa  fa-fw fa-caret-down"></i> Register law category</a>
+                        </li>
+                        <li>
+                            <a href="/dashboard/law"><i  class="fa  fa-fw fa-caret-down"></i> Register laws</a>
+                        </li>
+                    </ul>
+
+            <li class="nav-item">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+                href="#collapseMessage"><i class="fa fa-fw fa-comment"></i><i  class="fa  fa-fw fa-caret-right"></i>Support</a>
+                <ul class="sidebar-second-level collapse" id="collapseMessage">
+                    <li>
+                        <a href="/dashboard/agent/inquiry"><i  class="fa  fa-fw fa-caret-down"></i>Users Inquiry</a>
+                    </li>
+                </ul>
+             </li>
+
+                </li>
+
+            }
+
+             @if(message=="approval") {
+
+
+
+                 <li class="nav-item active">
+                     <a class="nav-link" href="/applied/agent"><i class=""></i>Agent Dashboard</a>
+                 </li>
+
+                         <li class="nav-item">
+                             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse"
+                             href="#collapseComponents"><i class="fa fa-fw fa-briefcase"></i> Agent Menu</a>
+                             <ul class="sidebar-second-level collapse" id="collapseComponents">
+                                 <li>
+                                     <a href="/agent/inquiry">Agent Inquiry</a>
+                                 </li>
+
+                             </ul>
+                         </li>
+                }
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+                <!--  -->
+            <li class="nav-item">
+                <a class="nav-link" href="/agent/logout"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,455 @@
+@(message: String)
+@main_dashboard("TAMS" ) {
+
+    @views.html.navigation("message")
+
+    <div class="content-wrapper py-3">
+        <div class="container-fluid">
+            <div class="row trak_map_page">
+                <div class="page-header" style="background-image: url('@routes.Assets.at("images/vehicle3.jpg")')">
+
+                    <div class="container">
+
+
+                      @if(Laws.ListInfoLaws() !=null && !Laws.ListInfoLaws().isEmpty){
+                        <div class=" col-md-9" id="searched" >
+                           <table class="table   table-bordered table-hover table-striped ">
+                           <thead>
+                                <tr class="bg-warning text-white">
+                                 <th>id</th>
+                                 <th>Law category</th>
+                                 <th>Law name</th>
+                                    <th>Law number</th>
+                                    <th>Description</th>
+                                   <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                           @for(l  <- Laws.ListInfoLaws()) {
+                                <tr>
+                                   <td class="id">
+                                    @l.cat.id
+                                   </td>
+
+                                    <td class="id">
+                                    @l.cat.category_name
+                                   </td>
+                                   <td class="">
+                                    @l.Law_name
+                                    </td>
+                                   <td class="">
+                                  @l.Law_number
+                               <td class="">
+                                 @l.description
+                                   </td>
+                                    <td><button class="btn btn-success">Edit</button></td>
+                                    <td><button class="btn btn-warning">Delete</button></td>
+                                   }
+                             </tr>
+
+                           </table>
+                       </div>
+                        }else{
+                        <div> <p>No data available</p></div>
+                        }
+                      </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- /.container-fluid -->
+    </div>
+        <!-- /.content-wrapper -->
+
+    <a class="scroll-to-top rounded" href="#">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+
+
+
+    @*User Details Model*@
+    @*    ============================-->*@
+
+    <section id="">
+        <div class="container">
+            <div class="row">
+                <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="Details" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title center" id="">Applicant detail</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body ">
+
+
+
+                                <form class=" mt-5"  id="applicationForm" enctype="multipart/form-data"  >
+
+                                    <div class="row">
+                                        <div class=" col-md-6 mt-5">
+                                            <div class="form-group   ">
+                                                <div class="col-md-3">
+                                                    <img  alt="passpost" id="passportphoto" width="140" height="140">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class=" col-md-6">
+                                            <div class="form-group   ">
+                                                <input  name="district" value="" disabled class="form-control" id="district"  type="disabled">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group   ">
+                                                <input  name="sector" disabled class="form-control" id="sector"  type="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                           <div class="row">
+                                        <div class=" col-md-6">
+                                            <div class="form-group   ">
+                                                <input  name="walletnumber" value="" disabled class="form-control text-warning" id="walletno"  type="disabled">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 ">
+                                            <div class="form-group   ">
+                                                <input  name="airtimenumber" value="" disabled class="form-control text-warning" id="airtimeno"  type="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6  ">
+                                            <input  name="cell" disabled class="form-control" id="cell" type="disabled">
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <input
+                                            name="agglomeration"
+                                            id="agromerat"
+                                            class="form-control"
+                                            type="text"
+                                            disabled
+
+                                            placeholder="Enter agglomeration name">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6  ">
+                                            <input
+                                            name="firstname"
+                                            id="firstname"
+                                            class="form-control"
+                                            type="text"
+                                            disabled
+                                            placeholder="Enter first name">
+                                        </div>
+
+                                        <div class="form-group col-md-6  ">
+                                            <input
+                                            name="lastname"
+                                            id="lastname"
+                                            class="form-control"
+                                            value=""
+                                            type="text"
+                                            disabled
+                                            placeholder="Enter last name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12  ">
+                                            <input
+                                            name="phone"
+                                            class="form-control"
+                                            type="text"
+                                            disabled
+                                            id="phonenumber"
+                                            placeholder="Enter phone number">
+                                        </div>
+
+                                        <div class="form-group col-md-12  ">
+                                            <input
+                                            name="address"
+                                            value="Address : "
+                                            class="form-control"
+                                            type="text"
+                                            disabled
+                                            id="address"
+                                            placeholder="Enter your address">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6  ">
+                                            <input
+                                            name="nationality"
+                                            value="Nationality :"
+                                            class="form-control"
+                                            type="text"
+                                            disabled
+                                            id="nationality"
+                                            placeholder="Enter your nationality">
+                                        </div>
+
+                                        <div class="form-group col-md-6  ">
+                                            <input
+                                            name="nationalid"
+                                            value="National ID:"
+                                            disabled
+                                            class="form-control"
+                                            type="text"
+                                            id="nid"
+                                            placeholder="Enter your national ID">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6  ">
+                                            <input
+                                            name="comapny"
+                                            value="Telecom company :"
+                                            disabled
+                                            id="company"
+                                            class="form-control"
+                                            type="text"
+                                            placeholder="">
+                                        </div>
+
+
+                                        <div class="form-group col-md-6  ">
+                                            <input
+                                            name="sitename"
+                                            value="Centre station name :"
+                                            disabled
+                                            id="sitename"
+                                            class="form-control"
+                                            type="text"
+                                            placeholder="Enter site name">
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    @*User update information *@
+    @*    ============================-->*@
+
+    <section id="">
+        <div class="container">
+            <div class="row">
+                <div class="modal fade" id="modify" tabindex="-1" role="dialog" aria-labelledby="modify" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title center" id="">MODIFY AGENT INFORMATION</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body ">
+
+                <form class=" mt-5"  method="post" id="myupdate" action="/manage/decision/update" enctype="multipart/form-data"  >
+                    <input type="text" id="id2" placeholder="iduser" name="id2" hidden>
+                    <input type="text" id="idnumber2" placeholder="idnumber2" name="idnumber2" hidden>
+
+
+                    <div class="row">
+                        <div class=" col-md-6">
+                            <div class="form-group   ">
+                                <select  name="distri2" id="distri2" class="form-control" onchange="Myfunction();">
+                                    <option value=""> -- select district -- </option>
+@*                                    @for(i <- District.findDistrict()) {*@
+@*                                        <option value="@i.id">@i.district</option>*@
+@*                                    }*@
+                                </select>                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group   ">
+                                <select  name="sector2" id="sector2"  class=" sector form-control" onchange="MyFunctionTwo();">
+                                    <option  value=""> -- select sector -- </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6  ">
+                            <select  name="cell2" id="cell2" class="form-control cell">
+                                <option value=""> -- select cell -- </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input
+                            name="agglomeration2"
+                            id="agglome"
+                            class="form-control"
+                            type="text"
+                            placeholder="Village name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 ">
+                            <label class="text-default">Choose passport photo</label>
+                            <input
+                            name="passport2"
+                            id="passport2"
+                            class="form-control"
+                            type="file"
+                            placeholder="passport photo">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6  ">
+                            <input
+                            name="nationality2"
+                            id="nationality2"
+                            class="form-control"
+                            type="text"
+                            placeholder="Enter your nationality">
+                        </div>
+
+                        <div class="form-group col-md-6  ">
+                            <input
+                            name="nationalid2"
+                            id="nationalid2"
+                            class="form-control"
+                            type="text"
+                            placeholder="Enter your national ID">
+                        </div>
+                    </div>
+
+                 <div class="row">
+                    <div class=" col-md-6">
+                        <div class="form-group   ">
+                            <input  name="walletnumber2" value="" placeholder="Wallet number" class="form-control text-warning" id="walletno2"  type="text">
+                        </div>
+                    </div>
+
+                <div class="col-md-6 ">
+                    <div class="form-group   ">
+                        <input  name="airtimenumber2" value="" placeholder="Airtime number" class="form-control text-warning" id="airtimeno2"  type="text">
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="row">
+            <div class="form-group col-md-6  ">
+                <input
+                name="firstname2"
+                id="firstname2"
+                class="form-control"
+                type="text"
+                placeholder="Enter first name">
+            </div>
+
+            <div class="form-group col-md-6  ">
+                <input
+                name="lastname2"
+                id="lastname2"
+                class="form-control"
+                value=""
+                type="text"
+                placeholder="Enter last name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12  ">
+                <input
+                name="phonenumber2"
+                class="form-control"
+                type="text"
+                id="phonenumber2"
+                placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group col-md-12  ">
+                <input
+                name="address2"
+                value=""
+                class="form-control"
+                type="text"
+                id="address2"
+                placeholder="Enter your address">
+            </div>
+
+        </div>
+
+        <div class="row">
+
+                <div class="col-sm-6">
+                    <select  name="company2" id="company2" class="form-control">
+                        <option value=""> -- select your Telecom company -- </option>
+                        <option value="mtn"> MTN </option>
+                        <option value="airteltigo"> AIRTEL - TIGO </option>
+                    </select>
+
+                </div>
+
+               <div class="form-group col-md-6  ">
+                <input
+                name="sitename2"
+                value=""
+                id="sitename2"
+                class="form-control"
+                type="text"
+                placeholder="Enter site name">
+            </div>
+             </div>
+                    <div class="form-group col-md-12 ">
+                        <button class="form-control btn btn-warning btn-lg " type="submit">UPDATE</button>
+                    </div>
+
+
+
+                                </form>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_7OucfzhqVC8ic_RPW0jPy-55OE0y-ZA&sensor=false&libraries=places">
+    </script>
+}
