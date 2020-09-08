@@ -22,10 +22,6 @@ GET   /dashboard/agent/posts/details/:id   controllers.AdminDashboard.ChatDetail
 GET   /view/comment/law   controllers.AdminDashboard.AdminViewLawComment()
 
 
-#  Signin && signup routes
-GET     /signup/agent                controllers.Application.agentSignup()
-GET     /signin/agent                controllers.Application.agentSingin()
-
 # Admin login routes
 GET     /admin/login                controllers.AdminDashboard.adminLogin()
 POST     /admin/login                controllers.AdminDashboard.adminSignCreate()
@@ -38,17 +34,12 @@ POST    /dashboard/register/law/cat        controllers.AdminDashboard.DashboardR
 POST /manage/decision/update                 controllers.ReportingControl.UpdateAgent()
 POST  /dashboard/post/law/comment                controllers.AdminDashboard.PostComment()
 
-
-#   Signin && signup routes
-POST     /signup/agent/create                controllers.Application.agentSignupCreate()
-POST     /signin/agent/create                controllers.Application.agentSigninCreate()
-
-
-#  Citizen application get and post methods
+#  Citizen  get and post methods
 
 GET /agent/inquiry                controllers.Application.ShowChat()
 POST /agent/inquiry                controllers.Application.SendChat()
 POST /agent/inquiry/reply                controllers.AdminDashboard.ReplyChat()
+POST /post/review/law/:id               controllers.Application.PostReview(id :Long)
 
 
 #Admin manage registered contents
@@ -60,10 +51,6 @@ GET /manage/law                 controllers.ReportingControl.LisLaws()
 GET /admin/modify/account                controllers.ReportingControl.ShowAdmins()
 POST /admin/modify/account                controllers.ReportingControl.UpdateAdmins()
 POST /admin/modify/account                controllers.ReportingControl.UpdateAdmins()
-
-#get the lists using json and js
-GET /agent/sectors/:id                controllers.Application.GetSectors(id :Long)
-GET /agent/cells/:id                controllers.Application.GetCells(id :Long)
 
 
 #Logout route

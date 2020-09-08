@@ -17,11 +17,15 @@ import scalax.file.Path;
 import scalax.io.support.FileUtils;
 import views.html.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import static org.joda.time.format.ISODateTimeFormat.time;
@@ -32,67 +36,24 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    public static  Result agentSignup(){
-
-//        return ok(signup_agent.render("welcome"));
-        return null;
-    }
-
-      // Display agent signin form
-    public static  Result agentSingin(){
-
-        // Find user session
-        boolean Session =  session().get("agentlog") !=null;
-
-        if(Session){
-
-//            String ExistingSession = session().get("agentlog");
-//           AgentApplication applicant  =AgentApplication.application(ExistingSession);
-//            boolean applied = applicant !=null;
-//
-//            if (applied){    // When student has loggedin and applied
-//
-//                return redirect("/applied/agent");
-//            }
-//            else{     // When student has loggedin and has not applied
-//
-//                return redirect("/application/agent");
-//            }
-        }
-//        else{
-//            return ok(signin_agent.render("welcome"));
-//        }
-
-        return  null;
-    }
+  public static Result PostReview(Long id){
 
 
-    public static Result agentSignupCreate(){
+      InetAddress IP= null;
+      try {
+          IP = InetAddress.getLocalHost();
+      } catch (UnknownHostException e) {
+          e.printStackTrace();
+      }
+//      System.out.println("IP of my system is := "+IP.getHostAddress());
 
-        DynamicForm signupForm = new DynamicForm().bindFromRequest();
-//        AgentsAccounts user = new AgentsAccounts();
-//        user.fullname =signupForm.field("names").value();
-//        user.gender =signupForm.field("gender").value();
-//        user.email =signupForm.field("email").value();
-//        String Texpassword =signupForm.field("password").value();
-////        user.password = BCrypt.hashpw(Texpassword, BCrypt.gensalt());
-//          user.password = Texpassword;
-//
-//        String email = signupForm.get("email");
-//        if ((user.isEmailExist(email) ) == null){
-//            user.save();
-//            flash("success", "successfully registered, go back to login");
-//            session().clear();
-//            return ok(views.html.signup_agent.render("success"));
-//        }
-//        else {
-//
-//            flash("error", "User with email : " +email+ " aleready exist");
-//        return badRequest(signup_agent.render("error"));
-//    }
+        Laws_review review = new Laws_review();
+         review.law =  Laws.FindLaws.byId(id);
+         review.country =  IP.getHostAddress();
+         review.save();
 
-        return  null;
-    }
+         return ok();
+     }
 
     // login for agent  function
     public static Result agentSigninCreate(){
@@ -174,16 +135,5 @@ public class Application extends Controller {
     }
 
 
-    public static Result GetSectors(Long id){
-        // get the list of the sectors according to selected district and pass it to json
-//      return ok(Json.toJson(Sector.ResultSectors(id)));
-        return null;
-     }
-
-     public static Result GetCells(Long id){
-        // get the list of the cells according to selected sector and pass it to json
-//      return ok(Json.toJson(Cell.ResultCells(id)));
-         return null;
-     }
 
 }

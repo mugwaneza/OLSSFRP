@@ -91,5 +91,36 @@ $('#adminsignup').validate({
 
 
 
+$(document).ready(function() {     // when clicks on law , data will be saved automatically
 
+    $('.DivLaws a').click(function (e) {
+
+
+        //
+        //
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var context = $(this).parents('.DivLaws');
+        var $id =  $(".lawid", context).val();
+
+
+        $.ajax({
+            type: 'POST',
+            url:"/post/review/law/"+$id,
+            data: $id,
+            async: false,
+            dataType: 'json',
+            success:function(response){
+                "successfully captured";
+            },
+            error:function(response){
+                response;
+            }
+        } )
+    });
+});
 
