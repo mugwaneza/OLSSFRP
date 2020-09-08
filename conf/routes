@@ -20,7 +20,7 @@ GET   /dashboard/law/details:id   controllers.AdminDashboard.LawDetails(id : Lon
 GET   /dashboard/law/comment:id   controllers.AdminDashboard.LawComment(id : Long)
 GET   /dashboard/agent/posts/details/:id   controllers.AdminDashboard.ChatDetails(id : String)
 GET   /view/comment/law   controllers.AdminDashboard.AdminViewLawComment()
-
+GET   /view/law/review   controllers.AdminDashboard.AdminViewLawReview()
 
 # Admin login routes
 GET     /admin/login                controllers.AdminDashboard.adminLogin()

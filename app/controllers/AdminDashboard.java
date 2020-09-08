@@ -28,10 +28,11 @@ public class AdminDashboard extends Controller {
 
     }
 
-
     public static Result AdminViewLawComment() {
         return ok(views.html.admin_citizens_comments.render());
-
+    }
+    public static Result AdminViewLawReview() {
+        return ok(views.html.admin_review_law.render());
     }
 
 
