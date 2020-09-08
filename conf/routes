@@ -17,8 +17,9 @@ GET     /manage/accounts       controllers.AdminDashboard.DashboardAdminAccounts
 GET     /dashboard/agent/inquiry       controllers.AdminDashboard.Inquiries()
 
 GET   /dashboard/law/details:id   controllers.AdminDashboard.LawDetails(id : Long)
-
+GET   /dashboard/law/comment:id   controllers.AdminDashboard.LawComment(id : Long)
 GET   /dashboard/agent/posts/details/:id   controllers.AdminDashboard.ChatDetails(id : String)
+GET   /view/comment/law   controllers.AdminDashboard.AdminViewLawComment()
 
 
 #  Signin && signup routes
@@ -35,6 +36,7 @@ POST    /admin/user/create        controllers.AdminDashboard.adminLoginCreateAco
 POST    /dashboard/law        controllers.AdminDashboard.DashboardCreateLaw()
 POST    /dashboard/register/law/cat        controllers.AdminDashboard.DashboardRegisterLawLawCatCreate()
 POST /manage/decision/update                 controllers.ReportingControl.UpdateAgent()
+POST  /dashboard/post/law/comment                controllers.AdminDashboard.PostComment()
 
 
 #   Signin && signup routes

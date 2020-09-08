@@ -24,8 +24,13 @@ public class AdminDashboard extends Controller {
     public static  DynamicForm  myform;
 
     public static Result DashboardIndex() {
-
         return ok(views.html.admin.render());
+
+    }
+
+
+    public static Result AdminViewLawComment() {
+        return ok(views.html.admin_citizens_comments.render());
 
     }
 
@@ -192,26 +197,50 @@ public class AdminDashboard extends Controller {
 
     public static Result Inquiries(){
 //        return ok(admin_agentinquiries.render("", "" ));
-
         return null;
     }
 
-    public static Result LawDetails(Long id){
-
+    public static Result LawDetails(Long id){      /*when a law law category is clicked laws will appear */
         List<Laws>list = Laws.GetLawsByCatId(id);
-//
 //        String ur = request().uri();
 //        System.out.println(ur);
-
         return ok(citizen_law_details.render(list) );
      }
 
+  public static Result LawComment(Long id){  /*when a law on list is clicked comment form will appear */
+        Laws law = Laws.FindLaws.byId(id);
+      return ok(citizen_law_comment.render("",law));
+    }
+
+  public static Result PostComment(){    // when comment button is clicked comment will be saved
+      DynamicForm CommentForm = new DynamicForm().bindFromRequest();
+      Comments comment = new Comments();
+      comment.citizen_name =CommentForm.field("names").value();
+      comment.citizen_identity =CommentForm.field("identity").value();
+      String lawid = CommentForm.field("lawid").value();
+      comment.law = Laws.FindLaws.byId(Long.parseLong(lawid));
+      comment.suggestion =CommentForm.field("comment").value();
+      comment.save();
+
+       Laws law = Laws.FindLaws.byId(Long.parseLong(lawid));
+
+         flash("commented", "Thanks for your comment");
+          return ok(views.html.citizen_law_comment.render("commented",law));
+      }
+
+
+
+
+
+
+
+
     public static Result ChatDetails(String id){
         List<Inquiries> inquiry = Inquiries.agentChat(id);
-        String ur = request().uri();
-        System.out.println(ur);
         return ok(admin_chatposts.render("", inquiry));
     }
+
+
 
     //    when an admin replies to the agent
     public static Result ReplyChat(){

@@ -1,0 +1,97 @@
+@(message : String)(dataLaw : Laws)
+@main("Welcome to OLSSFRP"){
+    @indexheader()
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services" class="section-bg">
+        <div class="container">
+
+            <header class="section-header">
+                <h3>Leave your comment</h3>
+            </header>
+            <div class="row">
+                    <div class=" col-lg-8 offset-2">
+                        <a href="#" class="list-group-item list-group-item-primary offset-1 text-white">
+                            <h6><b>@dataLaw.Law_name</b> </h6>
+                        </a>
+                        <form class="form mt-5" action="@routes.AdminDashboard.PostComment()" method="post" id="commentform">
+
+                            @if(message=="commented"){
+
+                                <div class="alert alert-success col-md-8 offset-1" role="alert">
+                                @flash.get("commented")
+                                </div>
+                            }
+
+                           <div class="form-group">
+                               <input type="text" name="names"  placeholder="Your name" class="form-control">
+                           </div>
+                            <div class="form-group">
+                                <input type="text" name="identity"  placeholder="Your Email / NID" class="form-control">
+                           </div>
+                            <div class="form-group">
+                                <input type="text" name="lawid" hidden placeholder="Id" value="@dataLaw.id" class="form-control">
+                                <textarea class="form-control" name="comment" placeholder="Your comment"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit"  value="Submit" class="btn btn-primary btn-lg col-lg-10 offset-1">
+                            </div>
+
+                        </form>
+
+                        <hr>
+                    </div>
+            </div>
+
+        </div>
+    </section><!-- #services -->
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="about-img">
+                        <img src="@routes.Assets.at("images/icon.png")" alt="" >
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6">
+                    <div class="about-content">
+                        <h2>About <span class="glyphicon glyphicon-send"></span></h2>
+                        <h3>Online Law Sensibilisation System For Rwanda Parliament</h3>
+                        <p>“Online law sensibilisation system for Rwanda parliament”. This helps public to follow and better understand the government law.</p>
+
+                        <ul>
+                            <li><i class="ion-android-checkmark-circle"></i>We care about you</li>
+                            <li><i class="ion-android-checkmark-circle"></i>Ask we shall reply </li>
+                            <li><i class="ion-android-checkmark-circle"></i>Don't miss the use of OLSSFRP for your acknowledgement about Laws</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- #about -->
+
+
+
+    @*      Signup/Signin Section*@
+    @*    ============================-->*@
+
+    <section id="chat">
+        <div class="container">
+            <div class="row">
+
+            @inquiry_model()
+
+            </div>
+        </div>
+    </section>
+}
+

@@ -38,24 +38,19 @@ $('#lawsform').validate({
 
 
 
-// Agent signup form
-$('#agentsigupform').validate({
+//  comment form
+$('#commentform').validate({
      rules : {
          names : {
             required : true,
-             minlength : 6
+             minlength : 4
          },
-         gender : {
+         identity : {
             required : true
         } ,
-         email : {
+         comment : {
             required : true,
-             email: true
-        },
-        password : {
-            required : true,
-            minlength : 8        }
-
+        }
 
     }
 });
@@ -94,15 +89,6 @@ $('#adminsignup').validate({
 });
 
 
-$('#agentchat').validate({
-
-    rules : {
-        message : {
-            required : true,
-        }
-
-    }
-});
 
 
 
