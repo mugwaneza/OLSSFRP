@@ -35,7 +35,7 @@ public class Comments extends Model {
 
     public Timestamp Created_at = new Timestamp(new Date().getTime());
 
-    public static Finder<Long,Comments> CommentsFinder = new Finder<>(Long.class,Comments.class);
+    public static Model.Finder<Long,Comments> CommentsFinder = new Model.Finder<>(Long.class,Comments.class);
 
     public static List<Comments> ListComments() {
         return CommentsFinder.all();

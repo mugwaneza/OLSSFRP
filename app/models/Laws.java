@@ -39,7 +39,7 @@ public class Laws extends Model {
 
     public Timestamp Created_at = new Timestamp(new Date().getTime());
 
-    public static Finder<Long,Laws> FindLaws= new Finder<>(Long.class,Laws.class);
+    public static Model.Finder<Long,Laws> FindLaws= new Model.Finder<>(Long.class,Laws.class);
 
     public static List<Laws> ListInfoLaws() {
         return FindLaws.all();

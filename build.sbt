@@ -9,6 +9,8 @@ resolvers += "Maven Repo" at "https://repo1.maven.org/maven2/"
 
 resolvers += "Maven Repo apache" at "https://repo.maven.apache.org/maven2/"
 
+resolvers += "Typesafe Repo" at "https://repo.typesafe.com/typesafe/ivy-releases"
+
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,

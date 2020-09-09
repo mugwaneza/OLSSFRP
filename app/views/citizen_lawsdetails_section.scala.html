@@ -4,11 +4,12 @@
     ============================-->
 <section id="services" class="section-bg">
     <div class="container">
-
-        <header class="section-header">
-            <h3 class="text-success">@lawList.get(0).cat.category_name category </h3>
-        <p>@lawList.get(0).cat.description</p>
-        </header>
+        @if(lawList !="" && !lawList.isEmpty) {
+            <header class="section-header">
+                <h3 class="text-success">@lawList.get(0).cat.category_name category </h3>
+                <p>@lawList.get(0).cat.description</p>
+            </header>
+        }
 
         <div class="row">
          @if(lawList !="" && !lawList.isEmpty){

@@ -28,7 +28,7 @@ public class Laws_review extends Model {
     public Timestamp visit_time = new Timestamp(new Date().getTime());
 
 
-    public static Finder<Long,Laws_review> FinderLawsReview = new Finder<>(Long.class,Laws_review.class);
+    public static Model.Finder<Long,Laws_review> FinderLawsReview = new Model.Finder<>(Long.class,Laws_review.class);
 
     public static List<Laws_review> ListLawsReview() {
         return FinderLawsReview.all();
