@@ -3,6 +3,7 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.SqlUpdate;
 import models.*;
+import oauth.signpost.http.HttpResponse;
 import org.mindrot.jbcrypt.BCrypt;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -14,6 +15,7 @@ import views.html.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -25,10 +27,10 @@ public class AdminDashboard extends Controller {
 
     public static Result DashboardIndex() {
         return ok(views.html.admin.render());
-
     }
 
     public static Result AdminViewLawComment() {
+
         return ok(views.html.admin_citizens_comments.render());
     }
     public static Result AdminViewLawReview() {
@@ -65,8 +67,8 @@ public class AdminDashboard extends Controller {
         String lawcat = myform.field("category_name").value();
         law.cat = Laws_category.findLawsCat.byId(Long.parseLong(lawcat));
         law.admin = AdminAccount.FindAdmin.byId(Long.parseLong(adminid));
-        law.Law_name = myform.field("law_name").value();
-        law.Law_number = myform.field("law_number").value();
+        law.law_name = myform.field("law_name").value();
+        law.law_number = myform.field("law_number").value();
         law.description = myform.field("description").value();
 
         String lawname = myform.get("law_name");

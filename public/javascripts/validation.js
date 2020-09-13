@@ -56,6 +56,25 @@ $('#commentform').validate({
 });
 
 
+
+//  Inquery form form
+$('#inqueryForm').validate({
+     rules : {
+         names : {
+            required : true,
+             minlength : 4
+         },
+         identity : {
+            required : true
+        } ,
+         inquery : {
+            required : true,
+        }
+
+    }
+});
+
+
 // Agent signup form
 $('#adminsignup').validate({
     rules : {

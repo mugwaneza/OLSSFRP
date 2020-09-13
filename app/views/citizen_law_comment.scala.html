@@ -9,21 +9,20 @@
         <div class="container">
 
             <header class="section-header">
-                <h3>Leave your comment</h3>
-            </header>
+                <h3>Leave your comment on the following law</h3>
+            </header><br>
             <div class="row">
                     <div class=" col-lg-8 offset-2">
                         <a href="#" class="list-group-item list-group-item-primary offset-1 text-white">
-                            <h6><b>@dataLaw.Law_name</b> </h6>
+                            <h6><b>@dataLaw.law_name </b> </h6>
                         </a>
                         <form class="form mt-5" action="@routes.AdminDashboard.PostComment()" method="post" id="commentform">
 
                             @if(message=="commented"){
-
                                 <div class="alert alert-success col-md-8 offset-1" role="alert">
                                 @flash.get("commented")
                                 </div>
-                            }
+                               }
 
                            <div class="form-group">
                                <input type="text" name="names"  placeholder="Your name" class="form-control">

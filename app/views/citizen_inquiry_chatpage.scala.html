@@ -1,0 +1,128 @@
+@(message : String)
+@main("Welcome to OLSSFRP"){
+    @indexheader()
+
+    <!--==========================
+      Services Section
+    ============================-->
+
+
+    <!--==========================
+      Inqueries
+    ============================-->
+    <section id="services" class="section-bg">
+        <div class="container">
+
+                <div class="row ">
+                <div class=" mt-5 col-lg-12 bg-white" style="padding-bottom: 12px; padding-top: 25px;"  >
+                    <h2 class="offset-3 text-primary">Your chat messages</h2>
+
+                        <div class="list-group col-lg-10 offset-1" >
+
+                        @if( (Inquiries.FindCitizenChat(flash.get("chatmessage")) != null) && (!Inquiries.FindCitizenChat(flash.get("chatmessage")) .isEmpty) ){
+                           @for(InqueryMessage <- Inquiries.FindCitizenChat(flash.get("chatmessage")) ) {
+
+                            <span class="list-group-item  justify-content-between align-items-center list-group-item-action list-group-item-primary" style="border-top-left-radius: 20px;">
+                                <h5>You: </h5>   @InqueryMessage.inquiry <span>&nbsp;</span> <br> @InqueryMessage.created_at
+                            </span><br>
+
+                               @if(InqueryMessage.reply !=null){
+                            <span class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success" style="border-bottom-left-radius: 20px; border-top-right-radius: 20px;">
+                                <h5>Feedback: </h5> @InqueryMessage.reply <span>&nbsp;</span> <br> @InqueryMessage.replied_at
+                            </span><br>
+                               }
+
+                            }
+                        }else{
+
+                          <li><p>No chat available</p></li>
+                        }
+
+                        </div>
+                        <form class="col-sm-offset-2" action="/send/inquiry" autocomplete="off" id="agentchat" method="POST" >
+
+                            @if(message == "error") {
+                                <div class="alert alert-danger col-md-8 offset-1" role="alert">
+                                @flash.get("error")
+                                </div>
+
+                            }
+                            @if(message=="success"){
+
+                                <div class="alert alert-success col-md-8 offset-1 mt-5 alert-dismissable" role="alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    @flash.get("success")
+                                </div>
+                            }
+                            <input hidden value="@Inquiries.FindCitizenChat(flash.get("chatmessage")).get(0).citizen_name" name="names">
+                            <input hidden value="@Inquiries.FindCitizenChat(flash.get("chatmessage")).get(0).citizen_identification" name="identity">
+
+                            <div class="form-group row offset-1 mt-5">
+                                <div class="col-sm-10">
+                                    <input required
+                                    name="inquiry"
+                                    id="message"
+                                    class="form-control"
+                                    type="text"
+                                    placeholder="Enter Message description"/>
+                                </div>
+                                <input type="submit" class="btn btn-primary " value="Send">
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                </div>
+    </section><!-- #inqueries -->
+
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="about-img">
+                        <img src="@routes.Assets.at("images/icon.png")" alt="" >
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6">
+                    <div class="about-content">
+                        <h2>About <span class="glyphicon glyphicon-send"></span></h2>
+                        <h3>Online Law Sensibilisation System For Rwanda Parliament</h3>
+                        <p>“Online law sensibilisation system for Rwanda parliament”. This helps public to follow and better understand the government law.</p>
+
+                        <ul>
+                            <li><i class="ion-android-checkmark-circle"></i>We care about you</li>
+                            <li><i class="ion-android-checkmark-circle"></i>Ask we shall reply </li>
+                            <li><i class="ion-android-checkmark-circle"></i>Don't miss the use of OLSSFRP for your acknowledgement about Laws</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- #about -->
+
+
+
+    @*      Signup/Signin Section*@
+    @*    ============================-->*@
+
+    <section id="chat">
+        <div class="container">
+            <div class="row">
+
+            @inquiry_model()
+
+            </div>
+            </div>
+        </div>
+    </section>
+}

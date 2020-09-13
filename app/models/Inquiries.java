@@ -25,7 +25,7 @@ public class Inquiries  extends Model {
 
     @Column
     @Constraints.Required
-    public String inquery;
+    public String inquiry;
 
     @Column
     @Constraints.Required
@@ -37,7 +37,7 @@ public class Inquiries  extends Model {
 
    @Column
     @Constraints.Required
-    public boolean reply;
+    public String reply;
 
     @Column
     @Constraints.Required
@@ -50,12 +50,12 @@ public class Inquiries  extends Model {
 
 
     // chats in agent dashboard
-    public static List<Inquiries> FindAgentChat(String agentid)
+    public static List<Inquiries> FindCitizenChat(String citizenId)
     {
-        List<Inquiries> agentinq;
-        agentinq = Inquiries.InquiryFinder.where().eq("agents_id",agentid).orderBy("id desc").findList();
+        List<Inquiries> citizen;
+        citizen = Inquiries.InquiryFinder.where().eq("citizen_identification",citizenId).orderBy("id asc").findList();
 
-        return agentinq;
+        return citizen;
     }
 
 

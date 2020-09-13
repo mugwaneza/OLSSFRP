@@ -27,11 +27,11 @@ public class Laws extends Model {
 
     @Column
     @Constraints.Required
-    public String Law_name;
+    public String law_name;
 
     @Column
     @Constraints.Required
-    public String Law_number;
+    public String law_number;
 
     @Column
     @Constraints.Required

@@ -37,7 +37,7 @@ POST  /dashboard/post/law/comment                controllers.AdminDashboard.Post
 #  Citizen  get and post methods
 
 GET /agent/inquiry                controllers.Application.ShowChat()
-POST /agent/inquiry                controllers.Application.SendChat()
+POST /send/inquiry               controllers.Application.SendChat()
 POST /agent/inquiry/reply                controllers.AdminDashboard.ReplyChat()
 POST /post/review/law/:id               controllers.Application.PostReview(id :Long)
 

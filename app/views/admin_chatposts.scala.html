@@ -20,7 +20,7 @@
                                            @if( !inquiry.isEmpty && inquiry != null){
                                            @for(inquiry <- inquiry){
                                             <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-info usermess"  id="usermess@inquiry.id">
-                                                <h5>@inquiry.citizen_name: </h5> @inquiry.inquery <span>&nbsp;</span> <br> @inquiry.created_at
+                                                <h5>@inquiry.citizen_name: </h5> @inquiry.inquiry <span>&nbsp;</span> <br> @inquiry.created_at
                                                 <input id="angentchat@inquiry.id" hidden name="angentchat" type="text" value="@inquiry.id">
                                             </li>
 

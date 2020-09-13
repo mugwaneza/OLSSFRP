@@ -106,21 +106,23 @@ public class Application extends Controller {
     public static Result ShowChat(){
 
         // get the list of all message sent by agent and his /her replies
-       inquiry = Inquiries.FindAgentChat(session().get("agentlog"));
+       inquiry = Inquiries.FindCitizenChat(session().get("agentlog"));
         return ok(agent_chat.render("", inquiry));
     }
 
        // When an agent sends achat
     public static Result SendChat(){
-//        DynamicForm signupForm = new DynamicForm().bindFromRequest();
-//        Inquiries user = new Inquiries();
-//
-//        String agentid = session().get("agentlog");
-//        user.agents =AgentsAccounts.FindAgent.where().eq("id",agentid).findUnique() ;
-//        user.message =signupForm.field("message").value();
-//        user.save();
-        flash("success"," Your message was sent, thanks " );
-        return ok(agent_chat.render("success", inquiry));
+        DynamicForm inquiryForm = new DynamicForm().bindFromRequest();
+        String userIdentity = inquiryForm.field("identity").value();
+
+        Inquiries user = new Inquiries();
+
+        user.inquiry = inquiryForm.field("inquiry").value();
+        user.citizen_name =inquiryForm.field("names").value();
+        user.citizen_identification =userIdentity;
+        user.save();
+        flash("chatmessage", userIdentity);
+        return ok(citizen_inquiry_chatpage.render("chatmessage"));
     }
 
 

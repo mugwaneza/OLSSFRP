@@ -11,7 +11,7 @@
 
         <div class="row">
 
-            @if(Laws_category.ListLawsCategories() !="" && !Laws_category.ListLawsCategories().isEmpty ){
+            @if(Laws_category.ListLawsCategories() !=null && !Laws_category.ListLawsCategories().isEmpty ){
             @for(category  <- Laws_category.ListLawsCategories()) {
                 <a href="@routes.AdminDashboard.LawDetails(category.id)">
                         <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
