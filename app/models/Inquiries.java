@@ -49,12 +49,21 @@ public class Inquiries  extends Model {
     public static Model.Finder<Long,Inquiries> InquiryFinder = new  Model.Finder<>(Long.class,Inquiries.class);
 
 
-    // chats in agent dashboard
+    // chats in citizen dashboard
     public static List<Inquiries> FindCitizenChat(String citizenId)
     {
         List<Inquiries> citizen;
         citizen = Inquiries.InquiryFinder.where().eq("citizen_identification",citizenId).orderBy("id asc").findList();
 
+        return citizen;
+    }
+
+
+    // Chats by citizen in admin dashboard
+    public static List<Inquiries> GroupCitizenChatByID()
+    {
+        List<Inquiries> citizen;
+        citizen = Inquiries.InquiryFinder.where("citizen_identification IS NOT NULL GROUP BY citizen_name  ").orderBy("id desc").findList();
         return citizen;
     }
 
@@ -67,10 +76,12 @@ public class Inquiries  extends Model {
         return  agentc;
     }
 
+
+
     public  static int Unread(){
 
         try {
-         return  InquiryFinder.where("agents_id IS NOT NULL AND reply_status=false GROUP BY agents_id ").findRowCount();
+         return  InquiryFinder.where("reply IS NULL  GROUP BY citizen_identification ").findRowCount();
 
         }
         catch (Exception  e) {

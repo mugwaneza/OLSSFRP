@@ -14,7 +14,7 @@ GET     /dashboard       controllers.AdminDashboard.DashboardIndex()
 GET     /dashboard/law       controllers.AdminDashboard.DashboardLawform()
 GET     /dashboard/register/law/cat       controllers.AdminDashboard.DashboardRegisterLawsCat()
 GET     /manage/accounts       controllers.AdminDashboard.DashboardAdminAccounts()
-GET     /dashboard/agent/inquiry       controllers.AdminDashboard.Inquiries()
+GET     /dashboard/inquiry/byusers       controllers.AdminDashboard.Inquiries()
 
 GET   /dashboard/law/details:id   controllers.AdminDashboard.LawDetails(id : Long)
 GET   /dashboard/law/comment:id   controllers.AdminDashboard.LawComment(id : Long)
@@ -36,7 +36,6 @@ POST  /dashboard/post/law/comment                controllers.AdminDashboard.Post
 
 #  Citizen  get and post methods
 
-GET /agent/inquiry                controllers.Application.ShowChat()
 POST /send/inquiry               controllers.Application.SendChat()
 POST /agent/inquiry/reply                controllers.AdminDashboard.ReplyChat()
 POST /post/review/law/:id               controllers.Application.PostReview(id :Long)

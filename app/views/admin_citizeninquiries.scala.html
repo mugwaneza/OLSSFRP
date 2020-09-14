@@ -1,5 +1,5 @@
-@(message: String, id : String)
-@main_dashboard("LSSRP" ) {
+@(message: String)
+@main_dashboard("OLSSFRP" ) {
 
     @views.html.navigation("message")
 
@@ -11,39 +11,34 @@
                     <div class="container">
                         <div class="col-md-12"><br>
 
-                            <h2 class="text-success ">Agents requests / suggestions list</h2>
-
-
-                            <div class="chats mt-5 col-md-10" >
+                            <h2 class="text-success ">Welcome to reply citizens' inquiries</h2>
+                            <div class="chats mt-5 col-lg-12" >
 
 
                                     <ul class="list-group  list-group-horizontal-sm">
-@*                      @if(ApprovedAgents.FindChatSender !=null && !ApprovedAgents.FindChatSender.isEmpty()){*@
-@*                                        @for(sender <- ApprovedAgents.FindChatSender() ) {*@
-
-@*                                       <a href="@routes.AdminDashboard.ChatDetails(id)@sender.agents.id" class="mylink" >*@
-@*                                 <input type="hidden" value="@sender.agents.id" id="link">*@
-@*                         <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default py-2"  >*@
-@*                                                 @sender.agents.fullname <br>*@
-@*                         <span class="badge badge-success "> Telecom company : @sender.agents.applicant.company</span>*@
-
+                    @if(Inquiries.GroupCitizenChatByID() !=null && !Inquiries.GroupCitizenChatByID().isEmpty()){
+                                       @for(sender <- Inquiries.GroupCitizenChatByID() ) {
+                                           <a href="" class="mylink" >
+                                <input type="hidden" value="" id="link">
+                        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default py-2"  >
+                                                @sender.citizen_name <br>
+                        <span class="badge badge-primary "> Identity : @sender.citizen_identification </span>
 
 
-                             @*  @if(AgentsInquiry.Unread !=null ){
-                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span class="badge badge-danger badge-pill ml-2"> unread message (s)</span>
-                                    }else{
-                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span class="badge badge-info badge-pill">readed</span><br>
-                                     }*@
 
-                           @*}*@
-@*                                  </li>*@
-@*                                  </a>*@
-
-@*                                       }else{*@
-@*                                           <p>No chat available</p>*@
-@*                                        }*@
+@*                              @if(Inquiries.Unread !=null ){*@
+@*                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*@
+@*                                <span class="badge badge-danger badge-pill ml-2">@Inquiries.Unread  unread message (s)</span>*@
+@*                                    }else{*@
+@*                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*@
+@*                                        <span class="badge badge-info badge-pill">readed</span><br>*@
+@*                                     }*@
+                                    }
+                                  </li>
+                                 </a>
+                                       }else{
+                              <p>No chat available</p>
+                                      }
                                     </ul>
                                 </div>
                             </div>

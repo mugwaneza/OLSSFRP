@@ -102,13 +102,6 @@ public class Application extends Controller {
 
 
     public static List<Inquiries> inquiry;
-    //  Chat with interface for user
-    public static Result ShowChat(){
-
-        // get the list of all message sent by agent and his /her replies
-       inquiry = Inquiries.FindCitizenChat(session().get("agentlog"));
-        return ok(agent_chat.render("", inquiry));
-    }
 
        // When an agent sends achat
     public static Result SendChat(){

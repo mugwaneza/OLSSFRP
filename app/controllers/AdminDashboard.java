@@ -199,8 +199,8 @@ public class AdminDashboard extends Controller {
 
 
     public static Result Inquiries(){
-//        return ok(admin_agentinquiries.render("", "" ));
-        return null;
+
+        return ok(admin_citizeninquiries.render(" "));
     }
 
     public static Result LawDetails(Long id){      /*when a law law category is clicked laws will appear */
