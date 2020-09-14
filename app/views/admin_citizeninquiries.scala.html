@@ -13,33 +13,30 @@
 
                             <h2 class="text-success ">Welcome to reply citizens' inquiries</h2>
                             <div class="chats mt-5 col-lg-12" >
-
-
                                     <ul class="list-group  list-group-horizontal-sm">
                     @if(Inquiries.GroupCitizenChatByID() !=null && !Inquiries.GroupCitizenChatByID().isEmpty()){
                                        @for(sender <- Inquiries.GroupCitizenChatByID() ) {
-                                           <a href="" class="mylink" >
-                                <input type="hidden" value="" id="link">
+                                       <a href="@routes.AdminDashboard.ChatDetails(sender.citizen_identification)" class="mylink" >
                         <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default py-2"  >
-                                                @sender.citizen_name <br>
-                        <span class="badge badge-primary "> Identity : @sender.citizen_identification </span>
+                                               <p>@sender.citizen_name</p>  <br>
+                            <span class="badge badge-primary "> Identity : @sender.citizen_identification </span>
 
-
-
-@*                              @if(Inquiries.Unread !=null ){*@
-@*                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*@
-@*                                <span class="badge badge-danger badge-pill ml-2">@Inquiries.Unread  unread message (s)</span>*@
-@*                                    }else{*@
-@*                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*@
-@*                                        <span class="badge badge-info badge-pill">readed</span><br>*@
-@*                                     }*@
-                                    }
-                                  </li>
+                            @if(sender.reply ==null ){
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               <span class="badge badge-warning badge-pill ml-2">@Inquiries.Unread  unreplied message</span>
+                                    }else{
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       <span class="badge badge-success badge-pill">Replied</span><br>
+                                           }
+                                </li>
                                  </a>
+                                 }  <!-- End for -->
+
                                        }else{
                               <p>No chat available</p>
                                       }
                                     </ul>
+
                                 </div>
                             </div>
 

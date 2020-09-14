@@ -25,14 +25,7 @@ public class ReportingControl extends Controller {
 
         return ok(views.html.admin_listcategories.render(""));
     }
-//    public static List<ApprovedAgents> searched ;
-    public static Result ApplicationDecisonSearch(String mobile){
-//
-//         searched = AgentApplication.Searched(mobile);
-//
-//        return ok(views.html.admin_listing_laws.render("", searched));
-        return null;
-    }
+
 
     public static Result LisLaws(){
         return ok(views.html.admin_listing_laws.render(""));

@@ -15,6 +15,7 @@ GET     /dashboard/law       controllers.AdminDashboard.DashboardLawform()
 GET     /dashboard/register/law/cat       controllers.AdminDashboard.DashboardRegisterLawsCat()
 GET     /manage/accounts       controllers.AdminDashboard.DashboardAdminAccounts()
 GET     /dashboard/inquiry/byusers       controllers.AdminDashboard.Inquiries()
+GET     /dashboard/citizen/inquiry/details:id       controllers.AdminDashboard.ChatDetails(id : String)
 
 GET   /dashboard/law/details:id   controllers.AdminDashboard.LawDetails(id : Long)
 GET   /dashboard/law/comment:id   controllers.AdminDashboard.LawComment(id : Long)
@@ -33,17 +34,16 @@ POST    /dashboard/law        controllers.AdminDashboard.DashboardCreateLaw()
 POST    /dashboard/register/law/cat        controllers.AdminDashboard.DashboardRegisterLawLawCatCreate()
 POST /manage/decision/update                 controllers.ReportingControl.UpdateAgent()
 POST  /dashboard/post/law/comment                controllers.AdminDashboard.PostComment()
+POST /admin/citizen/inquiry/reply               controllers.AdminDashboard.ReplyChat()
+
 
 #  Citizen  get and post methods
-
 POST /send/inquiry               controllers.Application.SendChat()
-POST /agent/inquiry/reply                controllers.AdminDashboard.ReplyChat()
 POST /post/review/law/:id               controllers.Application.PostReview(id :Long)
 
 
 #Admin manage registered contents
 GET /manage/categories                 controllers.ReportingControl.ListCategories()
-GET /manage/search/:mobile        controllers.ReportingControl.ApplicationDecisonSearch(mobile :String)
 GET /manage/law                 controllers.ReportingControl.LisLaws()
 
 #// modification of admin accounts

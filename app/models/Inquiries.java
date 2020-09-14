@@ -49,7 +49,7 @@ public class Inquiries  extends Model {
     public static Model.Finder<Long,Inquiries> InquiryFinder = new  Model.Finder<>(Long.class,Inquiries.class);
 
 
-    // chats in citizen dashboard
+    // Detailes chat of  citizen admin dashboard
     public static List<Inquiries> FindCitizenChat(String citizenId)
     {
         List<Inquiries> citizen;
@@ -59,7 +59,7 @@ public class Inquiries  extends Model {
     }
 
 
-    // Chats by citizen in admin dashboard
+    // List all citizens according to their chant names
     public static List<Inquiries> GroupCitizenChatByID()
     {
         List<Inquiries> citizen;
@@ -69,17 +69,14 @@ public class Inquiries  extends Model {
 
 
     // Detail chat of each message sender in admin
-    public static List<Inquiries> agentChat(String id)
+    public static List<Inquiries> ReplyCitizenChat(String id)
     {
-        List<Inquiries> agentc ;
-        agentc = InquiryFinder.where().eq("agents_id", id).findList();
-        return  agentc;
+        List<Inquiries> citizen ;
+        citizen = InquiryFinder.where().eq("", id).findList();
+        return  citizen;
     }
 
-
-
     public  static int Unread(){
-
         try {
          return  InquiryFinder.where("reply IS NULL  GROUP BY citizen_identification ").findRowCount();
 

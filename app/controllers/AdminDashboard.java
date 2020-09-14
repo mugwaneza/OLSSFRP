@@ -181,25 +181,12 @@ public class AdminDashboard extends Controller {
             return ok(views.html.adminaccounts.render("success"));
         }
         else {
-
             flash("error", "User with email : " +email+ " aleready exist");
             return badRequest(adminaccounts.render("error"));
-        }
-    }
-
-     // Reject applicant
-
-//        myform  = form().bindFromRequest();
-//        String applicantid = myform.field("rejectid").value();
-//        SqlUpdate update = Ebean. createSqlUpdate("UPDATE applicant SET reject_status=:reject_status WHERE id=:id")
-//                .setParameter("reject_status", "rejected")
-//                .setParameter("id", applicantid);
-//        int rows = update.execute();
-//        return redirect(routes.ReportingControl.ListAppicants());
-
+         }
+       }
 
     public static Result Inquiries(){
-
         return ok(admin_citizeninquiries.render(" "));
     }
 
@@ -231,42 +218,28 @@ public class AdminDashboard extends Controller {
           return ok(views.html.citizen_law_comment.render("commented",law));
       }
 
-
-
-
-
-
-
-
+    // get detailed chat of citizen when his name on the list is clicked
     public static Result ChatDetails(String id){
-        List<Inquiries> inquiry = Inquiries.agentChat(id);
+        List<Inquiries> inquiry = Inquiries.FindCitizenChat(id);
         return ok(admin_chatposts.render("", inquiry));
     }
 
-
-
     //    when an admin replies to the agent
     public static Result ReplyChat(){
-//        DynamicForm signupForm = new DynamicForm().bindFromRequest();
-//        String adminid = session().get("adminlog");
-//        System.out.println(adminid);
-//
-//        String reply =signupForm.field("message").value();
-//        String chatid =signupForm.field("replyid").value();
-//
-//        Timestamp replytime = new Timestamp(new Date().getTime());
-//        SqlUpdate update = Ebean. createSqlUpdate("update inquiry set admin_id=:admin_id, reply=:reply, reply_status=:reply_status,replied_at=:replied_at  WHERE id=:id")
-//                .setParameter("admin_id", adminid)
-//                .setParameter("reply", reply)
-//                .setParameter("reply_status", true)
-//                .setParameter("replied_at", replytime)
-//                .setParameter("id", chatid);
-//        int rowsCount = update.execute();
-//
-//        flash("success", "Reply successfully sent");
-//        return ok(admin_agentinquiries.render("success", ""));
-
-    return  null;
+        DynamicForm signupForm = new DynamicForm().bindFromRequest();
+        String adminid = session().get("adminlog");
+        System.out.println(adminid);
+        String reply =signupForm.field("message").value();
+        String chatid =signupForm.field("replyid").value();
+        Timestamp replytime = new Timestamp(new Date().getTime());
+        SqlUpdate update = Ebean. createSqlUpdate("update inquiries set admin_id=:admin_id, reply=:reply,replied_at=:replied_at  WHERE id=:id")
+                .setParameter("admin_id", adminid)
+                .setParameter("reply", reply)
+                .setParameter("replied_at", replytime)
+                .setParameter("id", chatid);
+        int rowsCount = update.execute();
+        flash("success", "Reply successfully sent");
+        return ok(admin_citizeninquiries.render("success"));
     }
 
 

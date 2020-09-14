@@ -143,3 +143,12 @@ $(document).ready(function() {     // when clicks on law , data will be saved au
     });
 });
 
+ // Show admin reply form when unreplied message is clicked
+$('.usermess').click(function () {
+    // get id of clicked list item
+    var userchatId = $(this).attr('id').replace('usermess', 'angentchat');
+    var Id = $('#'+userchatId).val();
+    $("#replyid").val(Id);  // assign id of row to be replied on reply form
+    $("#replydiv").show();    // show reply form
+});
+
