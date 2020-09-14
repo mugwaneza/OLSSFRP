@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2020 at 11:14 PM
+-- Generation Time: Sep 14, 2020 at 06:37 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -59,6 +59,15 @@ CREATE TABLE `comments` (
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `law_id`, `citizen_identity`, `citizen_name`, `suggestion`, `created_at`) VALUES
+(1, 2, 'karar@yahoo.com', 'Karangwa', 'We appreciate this platform', '2020-09-08 15:02:10'),
+(4, 4, '82828', 'Chever', 'Testing comment', '2020-09-08 18:43:56'),
+(5, 1, '8282822', 'Clever', 'This is not fair', '2020-09-09 08:55:45');
+
 -- --------------------------------------------------------
 
 --
@@ -68,13 +77,29 @@ CREATE TABLE `comments` (
 CREATE TABLE `inquiries` (
   `id` bigint(20) NOT NULL,
   `admin_id` bigint(20) DEFAULT NULL,
-  `inquery` varchar(255) DEFAULT NULL,
+  `inquiry` varchar(255) DEFAULT NULL,
   `citizen_name` varchar(255) DEFAULT NULL,
   `citizen_identification` varchar(255) DEFAULT NULL,
-  `reply` tinyint(1) DEFAULT 0,
+  `reply` varchar(255) DEFAULT NULL,
   `replied_at` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inquiries`
+--
+
+INSERT INTO `inquiries` (`id`, `admin_id`, `inquiry`, `citizen_name`, `citizen_identification`, `reply`, `replied_at`, `created_at`) VALUES
+(3, NULL, 'My first qery', 'Kabera', '123', 'Please come to the paliament for discussions', '2020-09-09', '2020-09-13 21:45:40'),
+(37, NULL, 'Good night', 'Kabera', '123', NULL, NULL, '2020-09-13 22:35:58'),
+(38, 2, 'This system how can I use it', 'Ruvebana Claude', '1239', 'Thanks sir', '2020-09-14 17:53:45', '2020-09-13 22:35:58'),
+(39, NULL, 'Good night', 'Kabera', '123', NULL, NULL, '2020-09-13 22:35:58'),
+(40, NULL, 'Hello sir. I want to know when the new law of land surveilling will be implemented', 'Hertien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 17:55:15'),
+(41, 2, 'And I will really appreciate your feedback', 'Hertien', 'hertien@gmail.com', 'Dear Hertien we shall let you know very soon', '2020-09-14 17:57:19', '2020-09-14 17:55:51'),
+(42, NULL, 'And I will really appreciate your feedback', 'Hertien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 17:57:39'),
+(43, NULL, 'I am still waiting\r\n', 'Heritien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 17:58:21'),
+(44, NULL, 'Thanks\r\n', 'Hertien', 'hertier@gmail.com', NULL, NULL, '2020-09-14 18:23:11'),
+(45, NULL, 'Test inquiry\r\n', 'Hertien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 18:24:03');
 
 -- --------------------------------------------------------
 
@@ -98,7 +123,9 @@ CREATE TABLE `laws` (
 
 INSERT INTO `laws` (`id`, `cat_id`, `admin_id`, `law_name`, `law_number`, `description`, `created_at`) VALUES
 (1, 1, 1, 'Robery', 'Law 123 ', 'criminal law', '2020-09-06 12:25:29'),
-(2, 2, 1, 'Wedding', 'Law 123 ', 'family', '2020-09-06 16:18:27');
+(2, 2, 1, 'Wedding', 'Law 123 ', 'family', '2020-09-06 16:18:27'),
+(3, 1, 1, 'Assault', 'Case law is the reduction of the judge\'s decision to writing and published in specific', 'books that publish the decisions of various courts. Some cases, for example, would', '2020-09-08 11:34:05'),
+(4, 1, 1, 'Contract Disputes', 'Contract Disputes. Contract disputes occur when one or more parties who signed a contract cannot or will not fulfill their obligations. ...', 'Contract Disputes. Contract disputes occur when one or more parties who signed a contract cannot or will not fulfill their obligations. ...', '2020-09-08 11:35:14');
 
 -- --------------------------------------------------------
 
@@ -120,7 +147,9 @@ CREATE TABLE `laws_category` (
 
 INSERT INTO `laws_category` (`id`, `admin_id`, `category_name`, `description`, `created_at`) VALUES
 (1, 1, 'Criminal law', 'Aaaaah, I think I see the error of my ways. I wallPostIndex parameter', '2020-09-06 11:46:11'),
-(2, 1, 'Family law', 'how to pass sql array values from java controller to scala template', '2020-09-06 16:17:41');
+(2, 1, 'Family law', 'how to pass sql array values from java controller to scala template', '2020-09-06 16:17:41'),
+(3, 2, 'Judicial laws', 'Judicial', '2020-09-09 08:53:52'),
+(4, 2, 'Migration law', 'migration', '2020-09-09 08:54:20');
 
 -- --------------------------------------------------------
 
@@ -134,6 +163,28 @@ CREATE TABLE `laws_review` (
   `country` varchar(255) DEFAULT NULL,
   `visit_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `laws_review`
+--
+
+INSERT INTO `laws_review` (`id`, `law_id`, `country`, `visit_time`) VALUES
+(1, 2, '02929', '2020-09-08 18:20:26'),
+(5, 2, '192.168.56.1', '2020-09-08 18:33:12'),
+(6, 2, '192.168.56.1', '2020-09-08 18:33:54'),
+(7, 2, '192.168.56.1', '2020-09-08 18:34:26'),
+(8, 2, '192.168.56.1', '2020-09-08 18:42:21'),
+(9, 1, '192.168.56.1', '2020-09-08 18:42:50'),
+(10, 1, '192.168.56.1', '2020-09-08 18:43:14'),
+(11, 3, '192.168.56.1', '2020-09-08 18:44:51'),
+(12, 3, '192.168.56.1', '2020-09-08 18:45:13'),
+(13, 4, '192.168.56.1', '2020-09-08 18:45:23'),
+(14, 1, '192.168.56.1', '2020-09-08 18:45:39'),
+(15, 3, '192.168.56.1', '2020-09-09 08:54:55'),
+(16, 3, '192.168.56.1', '2020-09-09 08:54:59'),
+(17, 1, '192.168.56.1', '2020-09-09 08:55:17'),
+(18, 2, '192.168.56.1', '2020-09-13 19:16:02'),
+(19, 1, '192.168.56.1', '2020-09-14 18:26:45');
 
 -- --------------------------------------------------------
 
@@ -224,31 +275,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `laws`
 --
 ALTER TABLE `laws`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `laws_category`
 --
 ALTER TABLE `laws_category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `laws_review`
 --
 ALTER TABLE `laws_review`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
