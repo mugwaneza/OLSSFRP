@@ -32,7 +32,6 @@ POST    /admin/user/create        controllers.AdminDashboard.adminLoginCreateAco
 # Admin dashbord post method
 POST    /dashboard/law        controllers.AdminDashboard.DashboardCreateLaw()
 POST    /dashboard/register/law/cat        controllers.AdminDashboard.DashboardRegisterLawLawCatCreate()
-POST /manage/decision/update                 controllers.ReportingControl.UpdateAgent()
 POST  /dashboard/post/law/comment                controllers.AdminDashboard.PostComment()
 POST /admin/citizen/inquiry/reply               controllers.AdminDashboard.ReplyChat()
 
@@ -45,11 +44,18 @@ POST /post/review/law/:id               controllers.Application.PostReview(id :L
 #Admin manage registered contents
 GET /manage/categories                 controllers.ReportingControl.ListCategories()
 GET /manage/law                 controllers.ReportingControl.LisLaws()
+GET /update/law/category:id              controllers.AdminDashboard.DashboardEditLawCat(id :Long)
+POST /update/law/category              controllers.AdminDashboard.DashboardUpdateLawCat()
+GET /delete/law/category:id              controllers.AdminDashboard.DeleteCategory(id :Long)
+GET /update/law:id              controllers.AdminDashboard.DashboardEditLaw(id :Long)
+POST /update/law              controllers.AdminDashboard.DashboardUpdateLaw()
+GET /delete/law:id              controllers.AdminDashboard.DashboardDeleteLaw(id: Long)
 
-#// modification of admin accounts
+# Update in admin accounts
 GET /admin/modify/account                controllers.ReportingControl.ShowAdmins()
+GET /admin/edit/account:id                controllers.ReportingControl.EditAdmins(id :Long)
 POST /admin/modify/account                controllers.ReportingControl.UpdateAdmins()
-POST /admin/modify/account                controllers.ReportingControl.UpdateAdmins()
+GET /admin/delete/account:id                controllers.ReportingControl.DeleteAdminAccount(id :Long)
 
 
 #Logout route

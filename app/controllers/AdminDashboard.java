@@ -5,6 +5,7 @@ import com.avaje.ebean.SqlUpdate;
 import models.*;
 import oauth.signpost.http.HttpResponse;
 import org.mindrot.jbcrypt.BCrypt;
+import play.api.db.DB;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -43,16 +44,72 @@ public class AdminDashboard extends Controller {
 
     }
 
+public static Result DashboardEditLawCat(Long id) {
+        Laws_category category  = Laws_category.findLawsCat.byId(id);
+        return ok(views.html.admin_edit_lawcategory.render("Edit law category", category));
 
-
-      public static Result DashboardRegisterLawsCat() {
-
-        return ok(views.html.admin_register_law_cat.render("welcome"));
+    }
+  public static Result DashboardUpdateLawCat() {
+      myform  = form().bindFromRequest();
+      String catid = myform.field("id").value();
+      String categoryname = myform.field("category_name").value();
+      String description = myform.field("description").value();
+  SqlUpdate update = Ebean. createSqlUpdate("UPDATE laws_category SET category_name=:category_name, description=:description WHERE id=:id")
+              .setParameter("category_name", categoryname)
+              .setParameter("description", description)
+              .setParameter("id", catid);
+      int rows = update.execute();
+      flash("success", "Category  successfully updated");
+      return redirect(routes.ReportingControl.ListCategories());
 
     }
 
-    public static Result DashboardAdminAccounts() {
+    public static Result DeleteCategory(Long id){
+        SqlUpdate update = Ebean. createSqlUpdate("delete from laws_category  WHERE id=:id")
+                .setParameter("id", id);
+        int rowsCount = update.execute();
+        flash("error", "Category  successfully deleted");
+        return redirect(routes.ReportingControl.ListCategories());
+    }
 
+
+    public static Result DashboardEditLaw(Long id) {
+        Laws law  = Laws.FindLaws.byId(id);
+        return ok(views.html.admin_edit_law.render("Edit law", law));
+      }
+
+    public static Result DashboardUpdateLaw() {
+        myform  = form().bindFromRequest();
+        String lawid = myform.field("id").value();
+        String categoryname = myform.field("category_name").value();
+        String lawname = myform.field("law_name").value();
+        String lawnumber = myform.field("law_number").value();
+        String description = myform.field("description").value();
+        SqlUpdate update = Ebean. createSqlUpdate("UPDATE laws SET cat_id=:cat_id,law_name=:law_name,law_number=:law_number, description=:description WHERE id=:id")
+                .setParameter("cat_id", categoryname)
+                .setParameter("law_name", lawname)
+                .setParameter("law_number", lawnumber)
+                .setParameter("description", description)
+                .setParameter("id", lawid);
+        int rows = update.execute();
+        flash("success", "Law  successfully updated");
+        return redirect(routes.ReportingControl.LisLaws());
+    }
+
+
+    public static Result DashboardDeleteLaw(Long id){
+        SqlUpdate update = Ebean. createSqlUpdate("delete from laws  WHERE id=:id")
+                .setParameter("id", id);
+        int rowsCount = update.execute();
+        flash("error", "Law  successfully deleted");
+        return redirect(routes.ReportingControl.LisLaws());
+    }
+
+    public static Result DashboardRegisterLawsCat() {
+        return ok(views.html.admin_register_law_cat.render("welcome"));
+    }
+
+    public static Result DashboardAdminAccounts() {
         return ok(views.html.adminaccounts.render(""));
 
     }

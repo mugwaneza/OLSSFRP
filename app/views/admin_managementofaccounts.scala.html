@@ -62,12 +62,12 @@
                                             </td>
 
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm editbtn" >Edit</button>
+                                              <a href="@routes.ReportingControl.EditAdmins(admin.id)"><input type="button"  class="btn btn-primary btn-sm " value="Edit" ></a>
 
                                             </td>
 
                                             <td>
-                                                <input type="button" value="Delete" class="btn btn-sm btn-danger deletebtn">
+                                                <a href="@routes.ReportingControl.DeleteAdminAccount(admin.id)"><input type="button"  class="btn btn-danger btn-sm " value="Delete" ></a>
                                             </td>
 
                                         </tr>

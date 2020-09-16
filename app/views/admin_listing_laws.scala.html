@@ -42,8 +42,8 @@
                                <td class="">
                                  @l.description
                                    </td>
-                                    <td><button class="btn btn-success">Edit</button></td>
-                                    <td><button class="btn btn-warning">Delete</button></td>
+                                    <td><a href="@routes.AdminDashboard.DashboardEditLaw(l.id)"> <input class="btn btn-success btn-md" type="button" value="Edit"></a></td>
+                                    <td><a href="@routes.AdminDashboard.DashboardDeleteLaw(l.id)"> <input class="btn btn-warning btn-md" type="button" value="Delete"></a></td>
                                    }
                              </tr>
 
