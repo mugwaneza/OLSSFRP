@@ -41,19 +41,6 @@ public class ReportingControl extends Controller {
     }
     // delete  admin row using variables capture from table with javascript file called all_agents_style
 
-    public static Result DeleteAdmins(){
-
-        myform  = form().bindFromRequest();
-        String adminid = myform.field("deletid").value();
-
-        SqlUpdate update = Ebean. createSqlUpdate("delete from admin  WHERE id=:id")
-                .setParameter("id", adminid);
-        int rowsCount = update.execute();
-
-        flash("error", "Admin account successfully deleted");
-
-        return ok(views.html.admin_managementofaccounts.render("error"));
-    }
 
     // update admin row using variables capture from table with javascript file called all_agents_style
     public static Result UpdateAdmins(){
@@ -71,18 +58,21 @@ public class ReportingControl extends Controller {
                 .setParameter("id", adminid);
         int rows = update.execute();
 
+
         flash("success", "Admin account successfully updated");
 
         return ok(views.html.admin_managementofaccounts.render("success"));
     }
 
     public static Result DeleteAdminAccount(Long id){
-        SqlUpdate update = Ebean. createSqlUpdate("delete from admin  WHERE id=:id")
-                .setParameter("id", id);
-        int rowsCount = update.execute();
-        flash("error", "Admin  successfully deleted");
+    SqlUpdate update = Ebean. createSqlUpdate("update admin set status=:status WHERE id=:id")
+            .setParameter("status", 0)
+            .setParameter("id", id);
+            int rowsCount = update.execute();
+        flash("success", "Admin successfully deleted");
         return redirect(routes.ReportingControl.ShowAdmins());
     }
+
 
     public static Result SendMessage(){
         return ok();

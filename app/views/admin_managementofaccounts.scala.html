@@ -43,7 +43,7 @@
                                         </tr>
                                     </thead>
 
-                                    @for(admin <- AdminAccount.FindAdmin.all() ) {
+                                    @for(admin <- AdminAccount.FindAdmin.where().eq("status", 1).findList() ) {
                                         <tr>
                                             <td class="id">
                                             @admin.id

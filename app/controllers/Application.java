@@ -55,52 +55,6 @@ public class Application extends Controller {
          return ok();
      }
 
-    // login for agent  function
-    public static Result agentSigninCreate(){
-
-//
-//        // get form's email and password
-//        DynamicForm myloginForm = new DynamicForm().bindFromRequest();
-//        String email = myloginForm.get("email");
-//        String Inpassword = myloginForm.get("password");
-//
-//        //Access agentaccount model
-//        AgentsAccounts agentaccount  = new AgentsAccounts();
-//
-//        // fetch data from agent table using input email method
-//         AgentsAccounts user = agentaccount.isEmailExist(email);
-//
-//        // Decrypt hashed password and compare it to input password
-//        // check if email exist and if password match then return fetched id then continue
-////           if ((agentaccount.isEmailExist(email))!=null  && BCrypt.checkpw(Inpassword, user.password)){
-//           if ((agentaccount.isEmailExist(email))!=null  && ( user.password.equals(Inpassword)) ){
-//
-//
-//            long myid = user.id;
-//               String id =  Long.toString(myid);
-//
-//               // Clear existing session
-//              session().clear();
-//
-//           //    create new session
-//              session("agentlog", id);
-//
-////               return  redirect("/application/agent");
-//               return redirect("/applied/agent");
-//
-//
-//           }
-//         else {
-//
-//             flash("error", "Invalid email or password ");
-//     //             flash("error", "Invalid email or password <a href=\"" + routes.Application.agentSingin().url()+"\" class=\"btn btn-link\">Log in</a>");
-//             return  ok(signin_agent.render("error"));
-//           }
-
-        return  null;
-    }
-
-
     public static List<Inquiries> inquiry;
 
        // When an agent sends achat

@@ -37,12 +37,15 @@ public class Laws extends Model {
     @Constraints.Required
     public String description;
 
+    @Column
+    public boolean status;
+
     public Timestamp Created_at = new Timestamp(new Date().getTime());
 
     public static Model.Finder<Long,Laws> FindLaws= new Model.Finder<>(Long.class,Laws.class);
 
     public static List<Laws> ListInfoLaws() {
-        return FindLaws.all();
+        return FindLaws.where().eq("status", 1).findList();
     }
 
 

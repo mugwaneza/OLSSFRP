@@ -34,6 +34,9 @@ public class  AdminAccount extends Model {
     @Constraints.Required
     public String password;
 
+    @Column
+    public boolean status;
+
 
     public Timestamp Created_at = new Timestamp(new Date().getTime());
 

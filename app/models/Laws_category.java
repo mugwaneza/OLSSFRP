@@ -34,6 +34,9 @@ public class Laws_category extends Model {
     public String category_name;
 
     @Column
+    public boolean status;
+
+    @Column
     @Constraints.Required
     public String description;
 
@@ -46,7 +49,7 @@ public class Laws_category extends Model {
     }
 
     public static List<Laws_category> ListLawsCategories() {  // List all categories
-        return findLawsCat.all();
+        return findLawsCat.where().eq("status", 1).findList();
     }
 
 

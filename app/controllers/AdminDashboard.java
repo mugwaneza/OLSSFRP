@@ -65,7 +65,8 @@ public static Result DashboardEditLawCat(Long id) {
     }
 
     public static Result DeleteCategory(Long id){
-        SqlUpdate update = Ebean. createSqlUpdate("delete from laws_category  WHERE id=:id")
+        SqlUpdate update = Ebean. createSqlUpdate("update laws_category set status=:status  WHERE id=:id")
+                .setParameter("status", 0)
                 .setParameter("id", id);
         int rowsCount = update.execute();
         flash("error", "Category  successfully deleted");
@@ -98,7 +99,8 @@ public static Result DashboardEditLawCat(Long id) {
 
 
     public static Result DashboardDeleteLaw(Long id){
-        SqlUpdate update = Ebean. createSqlUpdate("delete from laws  WHERE id=:id")
+        SqlUpdate update = Ebean. createSqlUpdate("update laws set status=:status WHERE id=:id")
+                .setParameter("status", 0)
                 .setParameter("id", id);
         int rowsCount = update.execute();
         flash("error", "Law  successfully deleted");
@@ -150,7 +152,7 @@ public static Result DashboardEditLawCat(Long id) {
 
         myform  = form().bindFromRequest();
         String mycat = myform.get("category_name");
-        String desc = myform.field("description").value();
+        String desc = myform.get("description");
 
         Laws_category lawcat = new Laws_category();
         lawcat.admin = AdminAccount.FindAdmin.byId(Long.parseLong(adminLog));;
