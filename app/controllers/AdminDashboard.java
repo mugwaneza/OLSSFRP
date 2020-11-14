@@ -129,6 +129,7 @@ public static Result DashboardEditLawCat(Long id) {
         law.law_name = myform.field("law_name").value();
         law.law_number = myform.field("law_number").value();
         law.description = myform.field("description").value();
+        law.status = true;
 
         String lawname = myform.get("law_name");
         if ((law.isLawExist(lawname)) ==null ){
@@ -158,6 +159,8 @@ public static Result DashboardEditLawCat(Long id) {
         lawcat.admin = AdminAccount.FindAdmin.byId(Long.parseLong(adminLog));;
         lawcat.category_name = mycat;
         lawcat.description = desc;
+        lawcat.status = true;
+
         if ((lawcat.isCategoryExist(mycat)) == null){
             lawcat.save();
             flash("success", mycat + " successfully saved " );
@@ -232,6 +235,7 @@ public static Result DashboardEditLawCat(Long id) {
         String Texpassword =signupForm.field("password").value();
 //        user.password = BCrypt.hashpw(Texpassword, BCrypt.gensalt());
         user.password = Texpassword;
+        user.status = true;
 
         String email = signupForm.get("email");
         if ((user.isEmailExist(email) ) == null){
