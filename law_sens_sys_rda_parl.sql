@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2020 at 06:37 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.1.33
+-- Generation Time: Dec 08, 2020 at 02:25 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,6 +32,7 @@ CREATE TABLE `admin` (
   `fullname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,9 +40,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `fullname`, `email`, `password`, `created_at`) VALUES
-(1, NULL, NULL, NULL, NULL),
-(2, 'Karangwa Jules', 'karagwa@gmail.com', 'karangwa123', NULL);
+INSERT INTO `admin` (`id`, `fullname`, `email`, `password`, `status`, `created_at`) VALUES
+(2, 'Alexis MUGWANEZA', 'mugwales@gmail.com', 'mugwaneza123', 1, NULL),
+(3, 'mpano Daniel', 'mpdaniel@gmail.com', 'mpanodaniel', 1, '2020-11-07 05:59:44');
 
 -- --------------------------------------------------------
 
@@ -64,9 +64,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `law_id`, `citizen_identity`, `citizen_name`, `suggestion`, `created_at`) VALUES
-(1, 2, 'karar@yahoo.com', 'Karangwa', 'We appreciate this platform', '2020-09-08 15:02:10'),
-(4, 4, '82828', 'Chever', 'Testing comment', '2020-09-08 18:43:56'),
-(5, 1, '8282822', 'Clever', 'This is not fair', '2020-09-09 08:55:45');
+(6, 6, 'jimy@gmail.com', 'Jimy', 'The violence is not being punished as it might be\r\n', '2020-11-07 06:23:16'),
+(7, 5, '749029299292', 'Nobel uhagaze', 'I liked this law', '2020-11-15 14:04:49');
 
 -- --------------------------------------------------------
 
@@ -90,16 +89,9 @@ CREATE TABLE `inquiries` (
 --
 
 INSERT INTO `inquiries` (`id`, `admin_id`, `inquiry`, `citizen_name`, `citizen_identification`, `reply`, `replied_at`, `created_at`) VALUES
-(3, NULL, 'My first qery', 'Kabera', '123', 'Please come to the paliament for discussions', '2020-09-09', '2020-09-13 21:45:40'),
-(37, NULL, 'Good night', 'Kabera', '123', NULL, NULL, '2020-09-13 22:35:58'),
-(38, 2, 'This system how can I use it', 'Ruvebana Claude', '1239', 'Thanks sir', '2020-09-14 17:53:45', '2020-09-13 22:35:58'),
-(39, NULL, 'Good night', 'Kabera', '123', NULL, NULL, '2020-09-13 22:35:58'),
-(40, NULL, 'Hello sir. I want to know when the new law of land surveilling will be implemented', 'Hertien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 17:55:15'),
-(41, 2, 'And I will really appreciate your feedback', 'Hertien', 'hertien@gmail.com', 'Dear Hertien we shall let you know very soon', '2020-09-14 17:57:19', '2020-09-14 17:55:51'),
-(42, NULL, 'And I will really appreciate your feedback', 'Hertien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 17:57:39'),
-(43, NULL, 'I am still waiting\r\n', 'Heritien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 17:58:21'),
-(44, NULL, 'Thanks\r\n', 'Hertien', 'hertier@gmail.com', NULL, NULL, '2020-09-14 18:23:11'),
-(45, NULL, 'Test inquiry\r\n', 'Hertien', 'hertien@gmail.com', NULL, NULL, '2020-09-14 18:24:03');
+(46, 2, 'I wish to thank you for this platform you brought to us', 'Charles', 'charles@gmail.com', 'Thank you for your feedback', '2020-11-07 06:33:11', '2020-11-07 06:32:36'),
+(47, 3, 'I want to ask you something', 'Kamana', 'kamana@gmail.com', 'Yes come on Kamana', '2020-11-15 14:12:28', '2020-11-15 14:11:51'),
+(48, NULL, 'I want to ask you something', 'Kamana', 'kamana@gmail.com', NULL, NULL, '2020-11-15 14:12:37');
 
 -- --------------------------------------------------------
 
@@ -114,6 +106,7 @@ CREATE TABLE `laws` (
   `law_name` varchar(255) DEFAULT NULL,
   `law_number` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -121,11 +114,10 @@ CREATE TABLE `laws` (
 -- Dumping data for table `laws`
 --
 
-INSERT INTO `laws` (`id`, `cat_id`, `admin_id`, `law_name`, `law_number`, `description`, `created_at`) VALUES
-(1, 1, 1, 'Robery', 'Law 123 ', 'criminal law', '2020-09-06 12:25:29'),
-(2, 2, 1, 'Wedding', 'Law 123 ', 'family', '2020-09-06 16:18:27'),
-(3, 1, 1, 'Assault', 'Case law is the reduction of the judge\'s decision to writing and published in specific', 'books that publish the decisions of various courts. Some cases, for example, would', '2020-09-08 11:34:05'),
-(4, 1, 1, 'Contract Disputes', 'Contract Disputes. Contract disputes occur when one or more parties who signed a contract cannot or will not fulfill their obligations. ...', 'Contract Disputes. Contract disputes occur when one or more parties who signed a contract cannot or will not fulfill their obligations. ...', '2020-09-08 11:35:14');
+INSERT INTO `laws` (`id`, `cat_id`, `admin_id`, `law_name`, `law_number`, `description`, `status`, `created_at`) VALUES
+(5, 5, 2, 'Majority', 'LAW Nº 32/2016 OF 28/08/2016 GOVERNING PERSONS', 'The age of majority is eighteen (18) years', 1, '2020-11-07 06:07:50'),
+(6, 6, 2, 'Violence against children', 'Organic Law No 20/2006 of 22/04/2006', 'Criminal law deals with behavior that is or can be construed as an offense against the public, society', 1, '2020-11-07 06:13:24'),
+(7, 7, 2, 'Breach of contract', ' N° 45/2011 RYO KUWA 25/11/2011 ', 'Breach of contract is a legal cause of action and a type of civil wrong', 1, '2020-11-07 06:17:01');
 
 -- --------------------------------------------------------
 
@@ -138,6 +130,7 @@ CREATE TABLE `laws_category` (
   `admin_id` bigint(20) DEFAULT NULL,
   `category_name` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,11 +138,10 @@ CREATE TABLE `laws_category` (
 -- Dumping data for table `laws_category`
 --
 
-INSERT INTO `laws_category` (`id`, `admin_id`, `category_name`, `description`, `created_at`) VALUES
-(1, 1, 'Criminal law', 'Aaaaah, I think I see the error of my ways. I wallPostIndex parameter', '2020-09-06 11:46:11'),
-(2, 1, 'Family law', 'how to pass sql array values from java controller to scala template', '2020-09-06 16:17:41'),
-(3, 2, 'Judicial laws', 'Judicial', '2020-09-09 08:53:52'),
-(4, 2, 'Migration law', 'migration', '2020-09-09 08:54:20');
+INSERT INTO `laws_category` (`id`, `admin_id`, `category_name`, `description`, `status`, `created_at`) VALUES
+(5, 2, 'Family Law', 'Family law is a legal practice area that focuses on issues involving family relationships, such as adoption, divorce, and child custody, among others.', 1, '2020-11-07 06:01:01'),
+(6, 2, 'Criminal law', ' It proscribes conduct perceived as threatening, harmful, or otherwise endangering to the property, health', 1, '2020-11-07 06:03:33'),
+(7, 2, 'civil law', 'The law relating to civil wrongs and quasi-contracts is part of the civil law, as is law of property', 1, '2020-11-07 06:05:06');
 
 -- --------------------------------------------------------
 
@@ -169,22 +161,11 @@ CREATE TABLE `laws_review` (
 --
 
 INSERT INTO `laws_review` (`id`, `law_id`, `country`, `visit_time`) VALUES
-(1, 2, '02929', '2020-09-08 18:20:26'),
-(5, 2, '192.168.56.1', '2020-09-08 18:33:12'),
-(6, 2, '192.168.56.1', '2020-09-08 18:33:54'),
-(7, 2, '192.168.56.1', '2020-09-08 18:34:26'),
-(8, 2, '192.168.56.1', '2020-09-08 18:42:21'),
-(9, 1, '192.168.56.1', '2020-09-08 18:42:50'),
-(10, 1, '192.168.56.1', '2020-09-08 18:43:14'),
-(11, 3, '192.168.56.1', '2020-09-08 18:44:51'),
-(12, 3, '192.168.56.1', '2020-09-08 18:45:13'),
-(13, 4, '192.168.56.1', '2020-09-08 18:45:23'),
-(14, 1, '192.168.56.1', '2020-09-08 18:45:39'),
-(15, 3, '192.168.56.1', '2020-09-09 08:54:55'),
-(16, 3, '192.168.56.1', '2020-09-09 08:54:59'),
-(17, 1, '192.168.56.1', '2020-09-09 08:55:17'),
-(18, 2, '192.168.56.1', '2020-09-13 19:16:02'),
-(19, 1, '192.168.56.1', '2020-09-14 18:26:45');
+(20, 6, '192.168.1.100', '2020-11-07 06:22:35'),
+(21, 7, '192.168.1.100', '2020-11-07 06:31:32'),
+(22, 6, '192.168.1.145', '2020-11-13 19:36:39'),
+(23, 6, '192.168.50.62', '2020-11-15 12:11:29'),
+(24, 5, '192.168.50.62', '2020-11-15 14:04:13');
 
 -- --------------------------------------------------------
 
@@ -269,37 +250,37 @@ ALTER TABLE `play_evolutions`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `laws`
 --
 ALTER TABLE `laws`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `laws_category`
 --
 ALTER TABLE `laws_category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `laws_review`
 --
 ALTER TABLE `laws_review`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

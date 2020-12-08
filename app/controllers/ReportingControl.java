@@ -3,17 +3,13 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.SqlUpdate;
 import models.AdminAccount;
-import org.mindrot.jbcrypt.BCrypt;
+import models.Laws;
 import play.data.DynamicForm;
-import play.db.ebean.Model;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
-import scalax.file.Path;
-import java.nio.file.Paths;
+import play.libs.Json;
 
-import java.io.File;
-import java.util.*;
+import java.util.List;
 
 import static play.data.Form.form;
 
@@ -29,7 +25,8 @@ public class ReportingControl extends Controller {
 
 
     public static Result LisLaws(){
-        return ok(views.html.admin_listing_laws.render(""));
+        List ls = null;
+        return ok(views.html.admin_listing_laws.render("",ls ));
     }
 
     public static Result ShowAdmins(){
@@ -76,6 +73,13 @@ public class ReportingControl extends Controller {
 
     public static Result SendMessage(){
         return ok();
+    }
+
+    public static Result Search(String name){
+
+        List<Laws> list = Laws.SearchLaw(name);
+        
+        return ok(views.html.admin_listing_laws.render("", list));
     }
 
 

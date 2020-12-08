@@ -1,4 +1,4 @@
-@(message: String)
+@(message: String, list:List[Laws])
 @main_dashboard("OLSSFRP" ) {
 
     @views.html.navigation("message")
@@ -6,11 +6,63 @@
     <div class="content-wrapper py-3">
         <div class="container-fluid">
             <div class="row trak_map_page">
-                <div class="page-header" style="background-image: url('@routes.Assets.at("images/vehicle3.jpg")')">
+                <div class="page-header" style="">
 
                     <div class="container">
 
+                       <div class="form-group col-md-9">
+                      <input id="searchid" class="form-control search" name="" type="text"  placeholder="Search the law from the list">
+                     </div>
 
+
+                        <div class="divseach" style="display: none">
+                           <!-- search results  table -->
+                        @if(list != null && !list.isEmpty){
+                            <div class=" col-md-9" id="searched" >
+                                <table class="table   table-bordered table-hover table-striped ">
+                                    <thead>
+                                        <tr class="bg-warning text-white">
+                                            <th>id</th>
+                                            <th>Law category</th>
+                                            <th>Law name</th>
+                                            <th>Law number</th>
+                                            <th>Description</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    @for(l  <- list) {
+                                        <tr>
+                                            <td class="id">
+                                            @l.cat.id
+                                            </td>
+
+                                            <td class="id">
+                                            @l.cat.category_name
+                                            </td>
+                                            <td class="">
+                                            @l.law_name
+                                            </td>
+                                            <td class="">
+                                            @l.law_number
+                                            <td class="">
+                                            @l.description
+                                            </td>
+                                            <td><a href="@routes.AdminDashboard.DashboardEditLaw(l.id)"> <input class="btn btn-success btn-md" type="button" value="Edit"></a></td>
+                                            <td><a href="@routes.AdminDashboard.DashboardDeleteLaw(l.id)"> <input class="btn btn-warning btn-md" type="button" value="Delete"></a></td>
+                                            }
+                                </tr>
+
+                                </table>
+                            </div>
+                        }else{
+                            <div> <p>No data available</p></div>
+                        }
+                        </div>
+
+                           <!-- end earch results  table -->
+                           <!-- Default table -->
+                        <div class="divtable" id="divtable">
                       @if(Laws.ListInfoLaws() != null && !Laws.ListInfoLaws().isEmpty){
                         <div class=" col-md-9" id="searched" >
                            <table class="table   table-bordered table-hover table-striped ">
@@ -52,6 +104,7 @@
                         }else{
                         <div> <p>No data available</p></div>
                         }
+                        </div>
                       </div>
                         </div>
 

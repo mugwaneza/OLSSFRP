@@ -50,6 +50,7 @@ GET /delete/law/category:id              controllers.AdminDashboard.DeleteCatego
 GET /update/law:id              controllers.AdminDashboard.DashboardEditLaw(id :Long)
 POST /update/law              controllers.AdminDashboard.DashboardUpdateLaw()
 GET /delete/law:id              controllers.AdminDashboard.DashboardDeleteLaw(id: Long)
+GET /search/law/:name                 controllers.ReportingControl.Search(name: String)
 
 # Update in admin accounts
 GET /admin/modify/account                controllers.ReportingControl.ShowAdmins()
